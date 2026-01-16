@@ -1,0 +1,31 @@
+# Small Language Models
+
+## Motivation
+Large Language Models (LLMs) beeindrucken mit ihren Eigenschaften. Aufgrund des Trainingsaufwands sind sie jedoch nur für wenige Unternehmen erstellbar. Das beschränkt die Nutzung, beispielsweise bei Anpassung (Feintuning) oder die Erzeugung spezifischer Modelle im Unternehmenskontext oder beim on-prem Betrieb.
+
+Neuere Entwicklungen zeigen, dass sogenannte Small Language Models (SLMs) ähnliche Leistungsfähigkeit wie LLMs zeigen können.
+
+## Ziel
+
+Diese Projektarbeit soll ein besseres Verständnis neuer Entwicklungen im Bereich SLMs ermöglichen.
+
+
+## Teilaufgaben
+
+1. Grundlagen 
+Unterscheiden und kategorisieren Sie grundlegende Begriffe des Bereichs
+LLMs, Foundation Models, GPT, InstructGPT, und weitere
+
+2. Ansätze zur Komplexitätsreduktion von LLMs
+LoRA, quantization
+
+3. Small Language Models (SLMs)
+Ansätze, Techniken, Unterschied zu LLMs
+
+4. Konkretes Bsp. und Möglichkeiten mit SLMs
+Gemma als Beispiel,  ggf. eigene Implementierung für eine Demonstration
+
+## Erwartete Ergebnisse
+
+* Standard: wiss. strukturierte Ausarbeitung im Umfang von max. 30 Seiten
+* Alternative zu Standard: Wiki zu obigen Teilaufgaben und Code auf Github.com
