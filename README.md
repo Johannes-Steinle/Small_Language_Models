@@ -7,7 +7,7 @@ Dieses Repository enthält die praktische Implementierung und Dokumentation zu S
 
 ### Dokumentation (Wiki)
 Die theoretischen Grundlagen, Analysen und Hintergründe finden Sie im Ordner `wiki/`.
-Wir empfehlen, die Dateien in der korrekten Reihenfolge zu lesen:
+Es empfiehlt sich, die Dateien in der korrekten Reihenfolge zu lesen:
 1. `wiki/Home.md`
 2. `wiki/1_Grundlagen.md`
 3. ...

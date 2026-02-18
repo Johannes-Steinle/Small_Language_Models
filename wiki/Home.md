@@ -1,19 +1,28 @@
-# Willkommen im SLM Projekt-Wiki
+# Small Language Models — Projekt-Wiki
 
 ## Motivation
-Large Language Models (LLMs) wie GPT-4 beeindrucken durch ihre Fähigkeiten, stellen aber aufgrund ihres massiven Ressourcenbedarfs eine Hürde für viele Unternehmen dar. Der Trend geht daher zu **Small Language Models (SLMs)**: Modelle, die durch Effizienz und hochwertige Daten eine überraschend hohe Leistung bei einem Bruchteil der Kosten bieten.
+
+Large Language Models (LLMs) wie GPT-4 beeindrucken durch ihre Fähigkeiten, stellen aber aufgrund ihres massiven Ressourcenbedarfs eine Hürde für viele Unternehmen dar. Das Training erfordert Rechenzentren, die Nutzung ist auf Cloud-APIs angewiesen, und in datensensiblen Branchen (Finanzen, Gesundheit) sind Datenschutz und DSGVO-Konformität ein Hindernis.
+
+Der Trend geht daher zu **Small Language Models (SLMs)**: Modelle mit unter 10 Milliarden Parametern, die durch architektonische Innovationen, Effizienz und hochwertige Daten eine überraschend hohe Leistung bei einem Bruchteil der Kosten bieten — und lokal auf eigener Hardware betrieben werden können.
 
 ## Ziel dieses Projekts
-Dieses Wiki dient als Begleitdokumentation zur Projektarbeit "Small Language Models". Es soll ein tiefes Verständnis für die neuen Entwicklungen im Bereich SLMs schaffen, von der theoretischen Taxonomie bis zur praktischen Implementierung mittels **Fine-Tuning (QLoRA)**.
+
+Dieses Wiki dient als Dokumentation zur Projektarbeit "Small Language Models". Es soll ein tiefes Verständnis für die neuen Entwicklungen im Bereich SLMs schaffen — von der theoretischen Taxonomie über Techniken zur Komplexitätsreduktion bis zur praktischen Implementierung mittels **Fine-Tuning (QLoRA)** auf einer Consumer-GPU.
 
 ## Navigation
-Nutzen Sie die Sidebar, um durch die Themen zu navigieren:
 
-1.  **[Grundlagen & Begriffe](1_Grundlagen)**: Was unterscheidet Foundation Models von LLMs?
-2.  **[Komplexitätsreduktion](2_Komplexitaetsreduktion)**: Wie funktionieren Quantisierung & LoRA?
-3.  **[Die Ära der SLMs](3_SLMs_Architecture)**: Warum sind kleine Modelle plötzlich so gut?
-4.  **[Fallstudie: Google Gemma](4_Fallstudie_Gemma)**: Eine Analyse des Gemma-Modells.
-5.  **[Praxis: Fine-Tuning Guide](5_Praxis_Guide)**: Wie man Gemma auf eigener Hardware anpasst.
+Die Sidebar führt durch die Themen in logischer Reihenfolge:
 
-## Code Repository
-Den dazugehörigen Code finden Sie im Ordner `notebooks/` dieses Repositories.
+1.  **[Grundlagen & Begriffe](1_Grundlagen)** — Foundation Models, LLMs, GPT → InstructGPT, und warum die Skalierung an ihre Grenzen stößt.
+2.  **[Methodiken zur Komplexitätsreduktion](2_Komplexitaetsreduktion)** — Quantisierung (NF4), LoRA, QLoRA und Pruning im Detail.
+3.  **[Small Language Models: Architektur](3_SLMs_Architecture)** — Die "Textbooks"-Hypothese, GQA, Sliding Window, Knowledge Distillation und der Vergleich LLM vs. SLM.
+4.  **[Fallstudie: Google Gemma](4_Fallstudie_Gemma)** — Architektur, Benchmarks und Vergleich mit Llama 3 und Phi-3.
+5.  **[Praxis: Fine-Tuning, Inferenz & Deployment](5_Praxis_Guide)** — QLoRA-Workflow, Edge Deployment, ökonomische Bewertung und Fazit.
+
+## Code
+
+Den dazugehörigen Code (Jupyter Notebooks für Google Colab) findet man im Ordner `notebooks/` dieses Repositories:
+
+*   `SLM_Finetuning_Demo.ipynb` — Fine-Tuning von Gemma-2-2B mit QLoRA
+*   `SLM_Inference_Demo.ipynb` — Inferenz / Chat mit dem quantisierten Modell
