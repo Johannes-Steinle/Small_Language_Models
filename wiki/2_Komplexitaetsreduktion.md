@@ -10,7 +10,7 @@ Quantisierung reduziert diese Präzision. Die Grundidee ist die Abbildung eines 
 
 $$Q(x) = \text{round}(x / S + Z)$$
 
-Wobei $S$ der Skalierungsfaktor und $Z$ der Nullpunkt (Zero-Point) ist. [[1]](#quellen)
+Wobei $x$ der ursprüngliche Gewichtswert (z.B. in FP32), $S$ der Skalierungsfaktor und $Z$ der Nullpunkt (Zero-Point) ist. [[1]](#quellen)
 
 ### Quantisierungsstufen
 

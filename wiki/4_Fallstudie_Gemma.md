@@ -17,7 +17,7 @@ Mit **Gemma 2** führte Google architektonische Änderungen ein, die die Leistun
 
     $$\text{logits} = C \cdot \tanh(x / C)$$
 
-    Dies stabilisiert das Training und verbessert die Qualität der generierten Texte.
+    Dabei ist $x$ der ursprüngliche Logit-Wert und $C$ eine Konstante, die die Obergrenze definiert (Soft-Cap). Durch die Tanh-Funktion werden extreme Werte sanft begrenzt, ohne sie hart abzuschneiden. Dies stabilisiert das Training und verbessert die Qualität der generierten Texte.
 
 2.  **Alternating Local and Global Attention:** Gemma 2 wechselt zwischen lokaler (Sliding Window, z.B. 4096 Token) und globaler Aufmerksamkeit. Dies reduziert den Speicherbedarf drastisch, ohne den Gesamtzusammenhang zu verlieren (siehe auch [Kapitel 3](3_SLMs_Architecture)).
 
