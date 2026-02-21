@@ -37,19 +37,16 @@ Die `trl`-Bibliothek (Transformer Reinforcement Learning) bietet den `SFTTrainer
 
 Dieser Workflow ermöglicht es, ein Sprachmodell auf einer einzelnen Consumer-Grafikkarte (z.B. NVIDIA RTX 3090 oder 4090) innerhalb weniger Stunden an eine neue Domäne anzupassen.
 
-### Notebooks
+### Notebooks — direkt in Google Colab öffnen
 
-*   **`notebooks/SLM_Finetuning_Demo.ipynb`** — Vollständiger Fine-Tuning-Workflow mit Gemma-2-2B und QLoRA.
-*   **`notebooks/SLM_Inference_Demo.ipynb`** — Einfache Inferenz (Chat) mit dem quantisierten Modell.
+| Notebook | Beschreibung | |
+| :--- | :--- | :--- |
+| **Fine-Tuning Demo** | Gemma-2-2B mit QLoRA fine-tunen | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Johannes-Steinle/Small_Language_Models/blob/main/notebooks/SLM_Finetuning_Demo.ipynb) |
+| **Inference Demo** | Chat / Inferenz mit dem quantisierten Modell | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Johannes-Steinle/Small_Language_Models/blob/main/notebooks/SLM_Inference_Demo.ipynb) |
 
-## Wie starte ich die Demo?
+Nach dem Öffnen in Colab muss lediglich die Laufzeit auf **T4 GPU** gestellt und ein **Hugging Face Token** eingegeben werden. Danach können alle Zellen nacheinander ausgeführt werden ("Run All").
 
-1.  Das Notebook in **Google Colab** öffnen (via Upload oder GitHub-Link).
-2.  Sicherstellen, dass die Laufzeit auf **T4 GPU** eingestellt ist.
-3.  Beim Start den **Hugging Face Token** eingeben (Gemma erfordert Lizenzzustimmung).
-4.  Alle Zellen nacheinander ausführen ("Run All").
-
-> **Hinweis:** Für das Training wird ein Hugging Face Account benötigt, und den Nutzungsbedingungen von Gemma muss zugestimmt worden sein.
+> **Hinweis:** Es wird ein [Hugging Face Account](https://huggingface.co/join) mit akzeptierten [Gemma-2 Nutzungsbedingungen](https://huggingface.co/google/gemma-2-2b-it) benötigt.
 
 ## Inferenz-Optimierung und Edge Deployment
 
