@@ -1,6 +1,6 @@
 # 2. Methodiken zur Komplexitätsreduktion
 
-Die Demokratisierung der KI basiert auf Techniken, die den Ressourcenhunger der Modelle senken. Diese Werkzeuge ermöglichen es, große Modelle effizienter zu machen oder kleine Modelle leistungsfähiger zu gestalten.
+Die folgenden Techniken senken den Ressourcenbedarf von Sprachmodellen und machen sie damit für eine breitere Anwendung zugänglich. Diese Werkzeuge ermöglichen es, große Modelle effizienter zu machen oder kleine Modelle leistungsfähiger zu gestalten.
 
 ## 1. Quantisierung (Quantization)
 
@@ -30,7 +30,7 @@ Zusätzlich nutzt **QLoRA** sogenannte **Double Quantization**: Da auch die Skal
 ### Post-Training (PTQ) vs. Quantization-Aware Training (QAT)
 
 *   **PTQ:** Nachträgliche Quantisierung eines fertig trainierten Modells. Schnell und einfach, aber leichter Genauigkeitsverlust möglich.
-*   **QAT:** Die Quantisierung wird bereits während des Trainings simuliert. Maximale Genauigkeit bei niedriger Präzision, aber rechenaufwendiger. [[4]](#quellen)
+*   **QAT:** Die Quantisierung wird bereits während des Trainings simuliert. Bestmögliche Modellqualität trotz reduzierter Bit-Breite, aber rechenaufwendiger. [[4]](#quellen)
 
 > **Ergebnis:** Ein 7B Modell in 4-Bit braucht nur noch **~4–5 GB VRAM** und läuft auf Consumer-GPUs.
 
@@ -80,7 +80,7 @@ Ein moderner Ansatz ist das **Depth Pruning (Layer Pruning)**: Ganze Schichten w
 | Verfahren | Funktionsweise | Primärer Nutzen | Nachteile |
 | :--- | :--- | :--- | :--- |
 | **PTQ** | Nachträgliche Reduktion der Bit-Präzision (z.B. FP16 → INT4). | Sofortige Speicherreduktion ohne Training. | Leichter Genauigkeitsverlust möglich. |
-| **QAT** | Simulation der Quantisierung während des Trainings. | Maximale Genauigkeit bei niedriger Präzision. | Rechenaufwendig im Training. |
+| **QAT** | Simulation der Quantisierung während des Trainings. | Bestmögliche Modellqualität trotz reduzierter Bit-Breite. | Rechenaufwendig im Training. |
 | **LoRA** | Einfügen kleiner, trainierbarer Matrizen ($A$, $B$); Einfrieren des Basismodells. | Extrem effizientes Fine-Tuning; Modularität. | Etwas komplexere Implementierung. |
 | **QLoRA** | Kombination aus 4-Bit Quantisierung (NF4) und LoRA. | Fine-Tuning riesiger Modelle auf Consumer-GPUs. | Leicht langsameres Training durch De-Quantisierung. |
 | **Unstructured Pruning** | Setzen einzelner Gewichte auf Null (Sparse Matrix). | Theoretische Modellverkleinerung. | Kaum Speedup auf Standard-Hardware. |
