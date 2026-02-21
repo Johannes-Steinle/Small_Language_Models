@@ -13,10 +13,10 @@ Der praktische Teil befindet sich in `notebooks/`. Die Notebooks sind für **Goo
 
 | Notebook | Beschreibung | |
 | :--- | :--- | :--- |
-| **SLM_Finetuning_Demo** | Fine-Tuning von Gemma-2-2B mittels QLoRA | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Johannes-Steinle/Small_Language_Models/blob/main/notebooks/SLM_Finetuning_Demo.ipynb) |
+| **SLM_Finetuning_Demo** | Fine-Tuning von Gemma 3 mittels QLoRA | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Johannes-Steinle/Small_Language_Models/blob/main/notebooks/SLM_Finetuning_Demo.ipynb) |
 | **SLM_Inference_Demo** | Inferenz / Chat mit dem quantisierten Modell | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Johannes-Steinle/Small_Language_Models/blob/main/notebooks/SLM_Inference_Demo.ipynb) |
 
-> **Voraussetzungen:** Ein [Hugging Face Account](https://huggingface.co/join) mit akzeptierten [Gemma-2 Nutzungsbedingungen](https://huggingface.co/google/gemma-2-2b-it) und ein Access Token (Read).
+> **Voraussetzungen:** Ein [Hugging Face Account](https://huggingface.co/join) mit akzeptierten [Gemma 3 Nutzungsbedingungen](https://huggingface.co/google/gemma-3-4b-it) und ein Access Token (Read).
 
 ## Installation (Lokal)
 Falls der Code lokal ausgeführt werden soll (statt Colab):

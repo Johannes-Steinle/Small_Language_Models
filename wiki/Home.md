@@ -17,12 +17,12 @@ Die Sidebar führt durch die Themen in logischer Reihenfolge:
 1.  **[Grundlagen & Begriffe](1_Grundlagen)** — Foundation Models, LLMs, GPT → InstructGPT, und warum die Skalierung an ihre Grenzen stößt.
 2.  **[Methodiken zur Komplexitätsreduktion](2_Komplexitaetsreduktion)** — Quantisierung (NF4), LoRA, QLoRA und Pruning im Detail.
 3.  **[Small Language Models: Architektur](3_SLMs_Architecture)** — Die "Textbooks"-Hypothese, GQA, Sliding Window, Knowledge Distillation und der Vergleich LLM vs. SLM.
-4.  **[Fallstudie: Google Gemma](4_Fallstudie_Gemma)** — Architektur, Benchmarks und Vergleich mit Llama 3 und Phi-3.
+4.  **[Fallstudie: Google Gemma 3](4_Fallstudie_Gemma)** — Architektur, Benchmarks und Vergleich mit Phi-4-mini und Qwen3.
 5.  **[Praxis: Fine-Tuning, Inferenz & Deployment](5_Praxis_Guide)** — QLoRA-Workflow, Edge Deployment, ökonomische Bewertung und Fazit.
 
 ## Code
 
 Den dazugehörigen Code (Jupyter Notebooks für Google Colab) findet man im Ordner `notebooks/` dieses Repositories:
 
-*   `SLM_Finetuning_Demo.ipynb` — Fine-Tuning von Gemma-2-2B mit QLoRA
+*   `SLM_Finetuning_Demo.ipynb` — Fine-Tuning von Gemma 3 mit QLoRA
 *   `SLM_Inference_Demo.ipynb` — Inferenz / Chat mit dem quantisierten Modell

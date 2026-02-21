@@ -35,13 +35,13 @@ In der klassischen **Multi-Head Attention (MHA)** hat jeder Head eigene Matrizen
 
 **GQA** ist ein Mittelweg: Mehrere Query-Heads teilen sich einen einzigen Key-Value-Head. [[4]](#quellen) Dies reduziert die Größe des KV-Caches drastisch (oft um Faktor 8 oder mehr), was es SLMs erlaubt, auch lange Kontexte (z.B. 128k Token) auf Consumer-Hardware zu verarbeiten.
 
-### Sliding Window Attention (z.B. Gemma 2)
+### Sliding Window Attention (z.B. Gemma 3)
 
-Anstatt dass jeder Token auf **alle** vorherigen Token "achtet" (quadratischer Aufwand), nutzen Modelle wie Gemma 2 eine **Alternating Local and Global Attention**: [[4]](#quellen)
+Anstatt dass jeder Token auf **alle** vorherigen Token "achtet" (quadratischer Aufwand), nutzen Modelle wie Gemma 3 eine **Alternating Local and Global Attention**: [[4]](#quellen)
 
-*   Manche Schichten beschränken sich auf ein **lokales Fenster** (z.B. nur die letzten 4096 Token).
-*   Andere Schichten behalten die **globale Attention**, um den Gesamtzusammenhang nicht zu verlieren.
-*   Diese Hybrid-Architektur spart Rechenzeit und Speicher, da die Aufmerksamkeitsmatrix in den lokalen Schichten viel kleiner ist.
+*   Die Mehrheit der Schichten beschränkt sich auf ein **lokales Fenster** (z.B. nur die letzten 1024 Token).
+*   Im Verhältnis **5:1** behält jede sechste Schicht die **globale Attention**, um den Gesamtzusammenhang nicht zu verlieren.
+*   Diese Hybrid-Architektur spart Rechenzeit und Speicher, da die Aufmerksamkeitsmatrix in den lokalen Schichten viel kleiner ist — und ermöglicht so Kontextlängen von 128k Token.
 
 ## Knowledge Distillation (Wissensdestillation)
 
@@ -53,7 +53,7 @@ Hierbei dient ein großes "Teacher"-Modell (z.B. GPT-4 oder Llama-3-70B) als Leh
 
 ## Vergleich der Ökosysteme: LLM vs. SLM
 
-| Merkmal | LLM (z.B. Llama-3-70B) | SLM (z.B. Phi-3, Gemma-2B) |
+| Merkmal | LLM (z.B. Llama-3-70B) | SLM (z.B. Phi-4-mini, Gemma-3-4B) |
 | :--- | :--- | :--- |
 | **Primärer Fokus** | Kapazität & Breite (Weltwissen) | Effizienz & Spezialisierung |
 | **Datenstrategie** | Quantität ("The Pile", Common Crawl) | Qualität & Dichte ("Textbooks", Filtered) |
@@ -68,7 +68,7 @@ Hierbei dient ein großes "Teacher"-Modell (z.B. GPT-4 oder Llama-3-70B) als Leh
 1. Phi-3 Technical Report — arXiv. https://arxiv.org/pdf/2404.14219
 2. Textbooks Are All You Need — arXiv. https://arxiv.org/html/2306.11644v1
 3. Introducing Phi-3 — Microsoft Azure Blog. https://azure.microsoft.com/en-us/blog/introducing-phi-3-redefining-whats-possible-with-slms/
-4. Gemma explained: What's new in Gemma 2 — Google Developers Blog. https://developers.googleblog.com/en/gemma-explained-new-in-gemma-2/
+4. Gemma explained: What's new in Gemma 3 — Google Developers Blog. https://developers.googleblog.com/en/gemma-explained-whats-new-in-gemma-3/
 5. Knowledge Distillation for LLMs — Zilliz Learn. https://zilliz.com/learn/knowledge-distillation-from-large-language-models-deep-dive
 6. Distilling the Knowledge in a Neural Network — Hinton et al., 2015. https://arxiv.org/abs/1503.02531
 7. Symbolic Chain-of-Thought Distillation: Small Models Can Also "Think" Step-by-Step — Li et al., ACL 2023. https://arxiv.org/abs/2306.14050

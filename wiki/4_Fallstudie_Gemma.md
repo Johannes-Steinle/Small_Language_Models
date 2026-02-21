@@ -1,61 +1,61 @@
-# 4. Fallstudie: Google Gemma — Ein modernes SLM
+# 4. Fallstudie: Google Gemma 3 — Ein modernes SLM
 
 Google Gemma dient als ideales Beispiel, um die Theorie in die Praxis zu übertragen. Gemma ist eine Familie von "Open Weights"-Modellen, die technologisch auf Googles Gemini-Modellen basieren. [[1]](#quellen)
 
 ## Architektur und Evolution
 
-Gemma ist ein **Decoder-only Transformer**. Zentrale Eigenschaften:
+Gemma 3 ist ein **Decoder-only Transformer**. Zentrale Eigenschaften:
 
-*   **Vokabular:** Extrem groß mit 256.000 Token (vgl. Llama 3 mit 128k, Phi-3 mit 32k). Dies ermöglicht eine effiziente Kompression von Texten, insbesondere in anderen Sprachen als Englisch und im Code-Bereich. [[1]](#quellen)
+*   **Vokabular:** Extrem groß mit **262.144 Token** (Gemini 2.0 SentencePiece-Tokenizer). Dies ermöglicht eine effiziente Kompression von Texten in über 140 Sprachen und im Code-Bereich. [[1]](#quellen)
 *   **Lizenz:** Gemma Terms of Use (Open Weights) — das Modell kann heruntergeladen und lokal betrieben werden.
+*   **Multimodalität:** Ab der 4B-Variante integriert Gemma 3 einen **SigLIP Vision Encoder** (~400M Parameter), der Text- und Bildverarbeitung in einem Modell vereint. [[2]](#quellen)
 
-### Gemma 2: Signifikante Verbesserungen
+### Gemma 3: Architektur-Innovation
 
-Mit **Gemma 2** führte Google architektonische Änderungen ein, die die Leistung drastisch steigerten: [[2]](#quellen)
+Mit **Gemma 3** führte Google tiefgreifende architektonische Änderungen ein, die die Vorgängerversion (Gemma 2) in allen Bereichen übertreffen: [[2]](#quellen)
 
-1.  **Logit Soft-Capping:** In großen Modellen können die Logits (Werte vor der Aktivierungsfunktion) extrem groß werden, was das Training instabil macht. Gemma 2 begrenzt diese Werte sanft mittels einer Tanh-Funktion:
+1.  **QK-Norm statt Soft-Capping:** Gemma 2 nutzte Logit Soft-Capping (Tanh-Funktion), um extreme Werte zu begrenzen. Gemma 3 ersetzt dies durch **Query-Key-Normalisierung (QK-Norm)** — eine RMSNorm auf die Query- und Key-Vektoren vor der Attention-Berechnung. Dies stabilisiert das Training effizienter und ist kompatibel mit optimierten Attention-Implementierungen wie FlashAttention. [[2]](#quellen)
 
-    $$\text{logits} = C \cdot \tanh(x / C)$$
+2.  **Sliding Window Attention (5:1 Ratio):** Gemma 3 nutzt ein deutlich kleineres lokales Fenster von nur **1024 Token** (Gemma 2: 4096) bei einem Verhältnis von **5:1** — fünf lokale Schichten pro eine globale Schicht. Dies reduziert den KV-Cache-Speicherbedarf massiv und ermöglicht Kontextlängen von **128k Token** (Gemma 2: 8k) auf Consumer-Hardware (siehe auch [Kapitel 3](3_SLMs_Architecture)). [[2]](#quellen)
 
-    Dabei ist $x$ der ursprüngliche Logit-Wert und $C$ eine Konstante, die die Obergrenze definiert (Soft-Cap). Durch die Tanh-Funktion werden extreme Werte sanft begrenzt, ohne sie hart abzuschneiden. Dies stabilisiert das Training und verbessert die Qualität der generierten Texte.
+## Leistungsvergleich: Gemma 3, Phi-4-mini, Qwen3
 
-2.  **Alternating Local and Global Attention:** Gemma 2 wechselt zwischen lokaler (Sliding Window, z.B. 4096 Token) und globaler Aufmerksamkeit. Dies reduziert den Speicherbedarf drastisch, ohne den Gesamtzusammenhang zu verlieren (siehe auch [Kapitel 3](3_SLMs_Architecture)).
+Die folgende Tabelle vergleicht aktuelle SLMs anhand gängiger Benchmarks: [[3]](#quellen) [[4]](#quellen) [[5]](#quellen)
 
-## Leistungsvergleich: Gemma 2, Llama 3, Phi-3
-
-Die folgende Tabelle vergleicht die aktuellen SLMs anhand gängiger Benchmarks: [[3]](#quellen) [[4]](#quellen)
-
-| Metrik / Modell | Gemma 2 (9B) | Llama 3.1 (8B) | Phi-3-Mini (3.8B) |
+| Metrik / Modell | Gemma 3 (4B) | Phi-4-mini (3.8B) | Qwen3 (8B) |
 | :--- | :--- | :--- | :--- |
-| **Parameter** | 9,2 Mrd. | 8,0 Mrd. | 3,8 Mrd. |
-| **MMLU (Wissen)** | **71,3%** | 69,4% | ~69% |
-| **GSM8K (Mathe)** | 68,6% | **84,5%** | 82,6% |
-| **HumanEval (Code)** | 40,2% | **72,6%** | 58,5% |
-| **Max. Kontextlänge** | 8k | 128k | 128k |
+| **Parameter** | ~4,3 Mrd. | 3,8 Mrd. | 8,2 Mrd. |
+| **MMLU (Wissen)** | 58,1% | 67,3% | **76,9%** |
+| **MATH-500 (Mathe)** | 75,6% | 64,0% | **97,0%**\* |
+| **HumanEval (Code)** | 71,3% | **74,4%** | ~67,7% |
+| **Max. Kontextlänge** | 128k | 128k | 128k |
+
+\* Qwen3 mit Hybrid Thinking Mode (integrierter Chain-of-Thought); im Non-Thinking-Modus vergleichbar mit den anderen Modellen.
 
 ### Analyse der Ergebnisse
 
-*   **Gemma 2** dominiert beim allgemeinen Wissen (MMLU). Dies deutet darauf hin, dass die Destillation vom großen Gemini-Modell viel Weltwissen übertragen hat.
-*   **Llama 3** ist führend bei "harten" Fähigkeiten wie Programmieren und Mathe. Dies spiegelt Metas Fokus auf große Mengen an Code-Daten im Pre-Training wider.
-*   **Phi-3** ist das beeindruckendste Modell in Bezug auf **Effizienz**: Mit weniger als halb so vielen Parametern erreicht es in Mathe (GSM8K) Werte, die fast an Llama 3 heranreichen und Gemma 2 schlagen. Dies ist der praktische Beweis für die "Textbooks"-Hypothese.
+*   **Qwen3** dominiert beim allgemeinen Wissen (MMLU) und Mathematik — insbesondere dank des **Hybrid Thinking Mode**, der Chain-of-Thought-Reasoning bei Bedarf automatisch aktiviert. Die enormen 36 Billionen Trainingstoken machen sich in der Wissensbreite bemerkbar.
+*   **Phi-4-mini** erreicht mit nur 3,8 Milliarden Parametern die stärksten Code-Ergebnisse (HumanEval) und beweist damit erneut die Wirksamkeit des datenzentrierten Ansatzes mit synthetischen Trainingsdaten.
+*   **Gemma 3** zeigt die stärkste Balance zwischen Mathematik und Code bei gleichzeitig kleiner Parameterzahl und bringt als einziges der drei Modelle **Multimodalität** (Bild + Text) bereits ab 4B Parametern mit.
 
 ### Vergleich der Kern-Philosophien
 
-| Feature | Google Gemma 2 | Microsoft Phi-3 | Meta Llama 3 (8B) |
+| Feature | Google Gemma 3 | Microsoft Phi-4-mini | Alibaba Qwen3 (8B) |
 | :--- | :--- | :--- | :--- |
-| **Kern-Philosophie** | Architektur-Innovation (Hybrid Attention) | Daten-Qualität ("Textbooks") | Skalierung & Menge (Trainingstoken) |
-| **Vokabular** | 256.000 Token | 32.000 Token | 128.000 Token |
-| **Attention** | Sliding Window + Global (Hybrid) | Standard (MHA/GQA) | Grouped-Query Attention (GQA) |
-| **Besonderheiten** | Logit Soft-Capping, GeGLU | Extrem aggressive Datenfilterung | Fokus auf Code & Math |
-| **Lizenz** | Gemma Terms (Open Weights) | MIT License (Open Source) | Llama Community License |
+| **Kern-Philosophie** | Architektur-Innovation (QK-Norm, Hybrid Attention, Multimodal) | Daten-Qualität (Synthetic Data, "Textbooks") | Skalierung & Hybrid Thinking (36T Token, Thinking Mode) |
+| **Vokabular** | 262.144 Token | 200.000 Token | 151.936 Token |
+| **Attention** | Sliding Window + Global (5:1) | Grouped-Query Attention (GQA) | Grouped-Query Attention (GQA) |
+| **Besonderheiten** | QK-Norm, SigLIP Vision Encoder, 128k Kontext | MoLoRA (Multimodal-Adapter), aggressive Datenfilterung | Hybrid Thinking Mode (Think/No-Think), 36T Trainingstoken |
+| **Lizenz** | Gemma Terms (Open Weights) | MIT License (Open Source) | Apache 2.0 (Open Source) |
 
-> **Fazit:** Es gibt kein "bestes" SLM — nur das passende Werkzeug für den jeweiligen Zweck. Gemma 2 glänzt als Allrounder mit starkem Weltwissen, Phi-3 überzeugt durch maximale Effizienz pro Parameter, und Llama 3 ist die erste Wahl für Code und Mathematik.
+> **Fazit:** Es gibt kein "bestes" SLM — nur das passende Werkzeug für den jeweiligen Zweck. Gemma 3 glänzt als multimodaler Allrounder mit innovativer Architektur, Phi-4-mini überzeugt durch maximale Effizienz pro Parameter dank synthetischer Daten, und Qwen3 setzt mit seinem Hybrid Thinking Mode neue Maßstäbe im Reasoning.
 
 ---
 
 ## Quellen
 
-1. Gemma: Open Models Based on Gemini — Google. https://storage.googleapis.com/deepmind-media/gemma/gemma-report.pdf
-2. Gemma explained: What's new in Gemma 2 — Google Developers Blog. https://developers.googleblog.com/en/gemma-explained-new-in-gemma-2/
-3. Gemma 2 vs LLaMA 3: Which AI Model Wins? — Kanerika. https://kanerika.com/blogs/gemma-2-vs-llama-3/
-4. Gemma 2 9B vs Llama 3.1 8B Instruct — LLM Stats. https://llm-stats.com/models/compare/gemma-2-9b-it-vs-llama-3.1-8b-instruct
+1. Gemma 3 Technical Report — Google DeepMind. https://arxiv.org/abs/2503.19786
+2. Gemma explained: What's new in Gemma 3 — Google Developers Blog. https://developers.googleblog.com/en/gemma-explained-whats-new-in-gemma-3/
+3. Gemma 3 4B Model Card — Hugging Face. https://huggingface.co/google/gemma-3-4b-it
+4. Phi-4-mini Technical Report — Microsoft. https://arxiv.org/abs/2503.01743
+5. Qwen3: Think Deeper, Act Faster — Qwen Blog. https://qwenlm.github.io/blog/qwen3/

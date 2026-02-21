@@ -8,7 +8,7 @@ Das Anpassen eines SLMs an spezifische Unternehmensdaten (z.B. technische Dokume
 
 ### Schritt 1: Modell in 4-Bit laden
 
-Das Basismodell (z.B. `google/gemma-2-2b-it`) wird mit der `BitsAndBytesConfig` im NF4-Format geladen, was den VRAM-Verbrauch drastisch senkt (von ca. 6 GB auf unter 2 GB):
+Das Basismodell (z.B. `google/gemma-3-4b-it`) wird mit der `BitsAndBytesConfig` im NF4-Format geladen, was den VRAM-Verbrauch drastisch senkt (von ca. 10 GB auf ~3–4 GB):
 
 ```python
 bnb_config = BitsAndBytesConfig(
@@ -41,12 +41,12 @@ Dieser Workflow ermöglicht es, ein Sprachmodell auf einer einzelnen Consumer-Gr
 
 | Notebook | Beschreibung | |
 | :--- | :--- | :--- |
-| **Fine-Tuning Demo** | Gemma-2-2B mit QLoRA fine-tunen | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Johannes-Steinle/Small_Language_Models/blob/main/notebooks/SLM_Finetuning_Demo.ipynb) |
+| **Fine-Tuning Demo** | Gemma 3 mit QLoRA fine-tunen | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Johannes-Steinle/Small_Language_Models/blob/main/notebooks/SLM_Finetuning_Demo.ipynb) |
 | **Inference Demo** | Chat / Inferenz mit dem quantisierten Modell | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Johannes-Steinle/Small_Language_Models/blob/main/notebooks/SLM_Inference_Demo.ipynb) |
 
 Nach dem Öffnen in Colab muss lediglich die Laufzeit auf **T4 GPU** gestellt und ein **Hugging Face Token** eingegeben werden. Danach können alle Zellen nacheinander ausgeführt werden ("Run All").
 
-> **Hinweis:** Es wird ein [Hugging Face Account](https://huggingface.co/join) mit akzeptierten [Gemma-2 Nutzungsbedingungen](https://huggingface.co/google/gemma-2-2b-it) benötigt.
+> **Hinweis:** Es wird ein [Hugging Face Account](https://huggingface.co/join) mit akzeptierten [Gemma 3 Nutzungsbedingungen](https://huggingface.co/google/gemma-3-4b-it) benötigt.
 
 ## Inferenz-Optimierung und Edge Deployment
 
@@ -54,7 +54,7 @@ Nach dem Training stellt sich die Frage des Betriebs. Hier zeigen SLMs ihre wahr
 
 ### GGUF und CPU-Inferenz
 
-Mittels Quantisierung können Modelle in das **GGUF**-Format konvertiert werden (für CPU-Inferenz via `llama.cpp`). Ein Gemma-2B-Modell, quantisiert auf 4-Bit, benötigt weniger als **2 GB Arbeitsspeicher** und läuft auf nahezu jedem modernen Rechner. [[3]](#quellen)
+Mittels Quantisierung können Modelle in das **GGUF**-Format konvertiert werden (für CPU-Inferenz via `llama.cpp`). Ein Gemma-3-4B-Modell, quantisiert auf 4-Bit, benötigt etwa **3–4 GB Arbeitsspeicher** und läuft auf nahezu jedem modernen Rechner. [[3]](#quellen)
 
 ### Mobile und Browser
 
@@ -95,7 +95,7 @@ Während LLMs weiterhin die Grenzen der künstlichen Intelligenz erforschen, sin
 
 1. Finetune Gemma with peft, 4-bit Quantized LoRA — Kaggle. https://www.kaggle.com/code/harishiker99/finetune-gemma-with-peft-4-bit-quantized-lora
 2. Fine-tuning with the Hugging Face ecosystem (TRL) — AMD ROCm. https://rocm.docs.amd.com/projects/ai-developer-hub/en/latest/notebooks/fine_tune/fine_tuning_lora_qwen2vl.html
-3. Gemma 2 9B vs Llama 3.1 8B Instruct — LLM Stats. https://llm-stats.com/models/compare/gemma-2-9b-it-vs-llama-3.1-8b-instruct
+3. Gemma 3 4B Model Card — Hugging Face. https://huggingface.co/google/gemma-3-4b-it
 4. Gemma 3n model overview — Google AI for Developers. https://ai.google.dev/gemma/docs/gemma-3n
 5. AI's Environmental Cost: Comparing Resource Consumption Between SLMs and LLMs — ICAIR. https://papers.academic-conferences.org/index.php/icair/article/view/4345
 6. NVIDIA Research Proves Small Language Models Superior to LLMs — Galileo AI. https://galileo.ai/blog/small-language-models-nvidia
