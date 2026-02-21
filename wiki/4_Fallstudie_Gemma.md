@@ -20,23 +20,25 @@ Mit **Gemma 3** führte Google tiefgreifende architektonische Änderungen ein, d
 
 ## Leistungsvergleich: Gemma 3, Phi-4-mini, Qwen3
 
-Die folgende Tabelle vergleicht aktuelle SLMs anhand gängiger Benchmarks: [[3]](#quellen) [[4]](#quellen) [[5]](#quellen)
+Die folgende Tabelle vergleicht aktuelle SLMs anhand gängiger Benchmarks. Die Quellenangabe pro Modell steht im Spaltenkopf — alle Werte einer Spalte stammen aus derselben Quelle.
 
-| Metrik / Modell | Gemma 3 (4B) | Phi-4-mini (3.8B) | Qwen3 (8B) |
+| Metrik / Modell | Gemma 3 4B-IT [[1]](#quellen) | Phi-4-mini-instruct [[4]](#quellen) | Qwen3-8B [[6]](#quellen) |
 | :--- | :--- | :--- | :--- |
 | **Parameter** | ~4,3 Mrd. | 3,8 Mrd. | 8,2 Mrd. |
-| **MMLU (Wissen)** | 58,1% | 67,3% | **76,9%** |
-| **MATH-500 (Mathe)** | 75,6% | 64,0% | **97,0%**\* |
-| **HumanEval (Code)** | 71,3% | **74,4%** | ~67,7% |
+| **MMLU (Wissen)** | 58,1% | 67,3% | **76,9%**\* |
+| **MATH (Mathe)** | **75,6%** | 64,0% | 87,4%\*\* |
+| **HumanEval (Code)** | 71,3% | **74,4%** | ~67,7%\*\*\* |
 | **Max. Kontextlänge** | 128k | 128k | 128k |
 
-\* Qwen3 mit Hybrid Thinking Mode (integrierter Chain-of-Thought); im Non-Thinking-Modus vergleichbar mit den anderen Modellen.
+\* Qwen3: MMLU des Base-Modells (5-shot). Gemma 3 und Phi-4-mini: Instruct-Modell.
+\*\* Qwen3: MATH-500 im Non-Thinking-Modus; mit Thinking Mode 97,4%. Gemma 3 und Phi-4-mini berichten den vollen MATH-Benchmark.
+\*\*\* Qwen3: EvalPlus-Durchschnitt (HumanEval, MBPP, HumanEval+, MBPP+) des Base-Modells.
 
 ### Analyse der Ergebnisse
 
-*   **Qwen3** dominiert beim allgemeinen Wissen (MMLU) und Mathematik — insbesondere dank des **Hybrid Thinking Mode**, der Chain-of-Thought-Reasoning bei Bedarf automatisch aktiviert. Die enormen 36 Billionen Trainingstoken machen sich in der Wissensbreite bemerkbar.
+*   **Qwen3** dominiert beim allgemeinen Wissen (MMLU) und verfügt über einen **Hybrid Thinking Mode**, der Chain-of-Thought-Reasoning bei Bedarf aktiviert und die MATH-Scores auf 97,4% hebt. Die enormen 36 Billionen Trainingstoken machen sich in der Wissensbreite bemerkbar.
 *   **Phi-4-mini** erreicht mit nur 3,8 Milliarden Parametern die stärksten Code-Ergebnisse (HumanEval) und beweist damit erneut die Wirksamkeit des datenzentrierten Ansatzes mit synthetischen Trainingsdaten.
-*   **Gemma 3** zeigt die stärkste Balance zwischen Mathematik und Code bei gleichzeitig kleiner Parameterzahl und bringt als einziges der drei Modelle **Multimodalität** (Bild + Text) bereits ab 4B Parametern mit.
+*   **Gemma 3** erzielt den stärksten MATH-Score unter den Standard-Instruct-Modellen (ohne Thinking Mode) und bringt als einziges der drei Modelle **Multimodalität** (Bild + Text) bereits ab 4B Parametern mit.
 
 ### Vergleich der Kern-Philosophien
 
@@ -59,3 +61,4 @@ Die folgende Tabelle vergleicht aktuelle SLMs anhand gängiger Benchmarks: [[3]]
 3. Gemma 3 4B Model Card — Hugging Face. https://huggingface.co/google/gemma-3-4b-it
 4. Phi-4-mini Technical Report — Microsoft. https://arxiv.org/abs/2503.01743
 5. Qwen3: Think Deeper, Act Faster — Qwen Blog. https://qwenlm.github.io/blog/qwen3/
+6. Qwen3 Technical Report — Alibaba. https://arxiv.org/abs/2505.09388
