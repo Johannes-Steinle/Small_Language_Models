@@ -90,7 +90,7 @@ Ein moderner Ansatz ist das **Depth Pruning (Layer Pruning)**: Ganze Schichten w
 
 ## Quellen
 
-1. A Detailed Technical Comparison of Fine-Tuning and Distillation in LLMs. https://medium.com/@jsmith0475/a-detailed-technical-comparison-of-fine-tuning-and-distillation-in-large-language-models-cccbe629dcba
+1. Quantization — Hugging Face Optimum Documentation. https://huggingface.co/docs/optimum/concept_guides/quantization
 2. LoRA vs. QLoRA: Efficient fine-tuning techniques for LLMs — Modal. https://modal.com/blog/lora-qlora
 3. QLoRA: Efficient Finetuning of Quantized LLMs — MaximoFN. https://www.maximofn.com/en/qlora/
 4. A Survey on Model Compression for Large Language Models — ACL Anthology. https://aclanthology.org/2024.tacl-1.85.pdf

@@ -52,8 +52,8 @@ Hier öffnet sich die Nische für **Small Language Models (SLMs)**: Modelle mit 
 
 1. Foundation model — Wikipedia. https://en.wikipedia.org/wiki/Foundation_model
 2. Gemma: Open Models Based on Gemini — Google. https://storage.googleapis.com/deepmind-media/gemma/gemma-report.pdf
-3. Phi-3 Technical Report — arXiv. https://arxiv.org/pdf/2404.14219
+3. Emergent Abilities of Large Language Models — Wei et al., 2022. https://arxiv.org/abs/2206.07682
 4. SLMs vs LLMs — Datacamp. https://www.datacamp.com/blog/slms-vs-llms
 5. Energy Considerations of LLM Inference — ACL Anthology. https://aclanthology.org/2025.acl-long.1563.pdf
-6. Foundation Models and LLMs: a Complete Guide — Kili Technology. https://kili-technology.com/blog/large-language-models-llms
+6. AI, LLMs and Data Protection — Irish Data Protection Commission (DPC). https://www.dataprotection.ie/en/dpc-guidance/blogs/AI-LLMs-and-Data-Protection
 7. Small language models vs. large language models — Invisible Technologies. https://invisibletech.ai/blog/how-small-language-models-can-outperform-llms

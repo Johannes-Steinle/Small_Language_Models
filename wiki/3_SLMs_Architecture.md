@@ -70,5 +70,5 @@ Hierbei dient ein großes "Teacher"-Modell (z.B. GPT-4 oder Llama-3-70B) als Leh
 3. Introducing Phi-3 — Microsoft Azure Blog. https://azure.microsoft.com/en-us/blog/introducing-phi-3-redefining-whats-possible-with-slms/
 4. Gemma explained: What's new in Gemma 2 — Google Developers Blog. https://developers.googleblog.com/en/gemma-explained-new-in-gemma-2/
 5. Knowledge Distillation for LLMs — Zilliz Learn. https://zilliz.com/learn/knowledge-distillation-from-large-language-models-deep-dive
-6. What are Small Language Models (SLM)? — IBM. https://www.ibm.com/think/topics/small-language-models
-7. Small Language Models for Your Niche Needs — HatchWorks. https://hatchworks.com/blog/gen-ai/small-language-models/
+6. Distilling the Knowledge in a Neural Network — Hinton et al., 2015. https://arxiv.org/abs/1503.02531
+7. Symbolic Chain-of-Thought Distillation: Small Models Can Also "Think" Step-by-Step — Li et al., ACL 2023. https://arxiv.org/abs/2306.14050
