@@ -24,5 +24,4 @@ Die Sidebar führt durch die Themen in logischer Reihenfolge:
 
 Den dazugehörigen Code (Jupyter Notebooks für Google Colab) findet man im Ordner `notebooks/` dieses Repositories:
 
-*   `SLM_Finetuning_Demo.ipynb` — Fine-Tuning von Gemma 3 mit QLoRA
-*   `SLM_Inference_Demo.ipynb` — Inferenz / Chat mit dem quantisierten Modell
+*   `SLM_Finetuning_Demo.ipynb` — Fine-Tuning von Gemma 3 mit QLoRA + Inferenz-Test

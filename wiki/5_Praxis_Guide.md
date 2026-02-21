@@ -41,8 +41,7 @@ Dieser Workflow ermöglicht es, ein Sprachmodell auf einer einzelnen Consumer-Gr
 
 | Notebook | Beschreibung | |
 | :--- | :--- | :--- |
-| **Fine-Tuning Demo** | Gemma 3 mit QLoRA fine-tunen | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Johannes-Steinle/Small_Language_Models/blob/main/notebooks/SLM_Finetuning_Demo.ipynb) |
-| **Inference Demo** | Chat / Inferenz mit dem quantisierten Modell | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Johannes-Steinle/Small_Language_Models/blob/main/notebooks/SLM_Inference_Demo.ipynb) |
+| **Fine-Tuning & Inferenz Demo** | Gemma 3 mit QLoRA fine-tunen und anschließend testen | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Johannes-Steinle/Small_Language_Models/blob/main/notebooks/SLM_Finetuning_Demo.ipynb) |
 
 Nach dem Öffnen in Colab muss lediglich die Laufzeit auf **T4 GPU** gestellt und ein **Hugging Face Token** eingegeben werden. Danach können alle Zellen nacheinander ausgeführt werden ("Run All").
 
