@@ -6,21 +6,20 @@ Willkommen zum Repository der Projektarbeit "Small Language Models".
 Dieses Repository enthält die praktische Implementierung und Dokumentation zu SLMs, mit einem Fokus auf **Google Gemma**.
 
 ### Dokumentation (Wiki)
-Die theoretischen Grundlagen, Analysen und Hintergründe finden Sie im Ordner `wiki/`.
-Es empfiehlt sich, die Dateien in der korrekten Reihenfolge zu lesen:
-1. `wiki/Home.md`
-2. `wiki/1_Grundlagen.md`
-3. ...
+Die theoretischen Grundlagen, Analysen und Hintergründe finden sich im [Wiki](https://github.com/Johannes-Steinle/Small_Language_Models/wiki) sowie im Ordner `wiki/`.
 
 ### Code (Notebooks)
-Der praktische Teil befindet sich in `notebooks/`.
-Die Notebooks sind für **Google Colab** optimiert (laufen aber auch lokal mit GPU).
+Der praktische Teil befindet sich in `notebooks/`. Die Notebooks sind für **Google Colab** optimiert und können direkt per Klick geöffnet werden:
 
-*   **`SLM_Finetuning_Demo.ipynb`**: Zeigt, wie man Gemma-2-2B mittels QLoRA auf einem eigenen Datensatz nachtrainiert.
-*   **`SLM_Inference_Demo.ipynb`**: Ein einfacher Chat-Bot mit Gemma.
+| Notebook | Beschreibung | |
+| :--- | :--- | :--- |
+| **SLM_Finetuning_Demo** | Fine-Tuning von Gemma-2-2B mittels QLoRA | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Johannes-Steinle/Small_Language_Models/blob/main/notebooks/SLM_Finetuning_Demo.ipynb) |
+| **SLM_Inference_Demo** | Inferenz / Chat mit dem quantisierten Modell | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Johannes-Steinle/Small_Language_Models/blob/main/notebooks/SLM_Inference_Demo.ipynb) |
+
+> **Voraussetzungen:** Ein [Hugging Face Account](https://huggingface.co/join) mit akzeptierten [Gemma-2 Nutzungsbedingungen](https://huggingface.co/google/gemma-2-2b-it) und ein Access Token (Read).
 
 ## Installation (Lokal)
-Falls Sie den Code lokal ausführen möchten (statt Colab):
+Falls der Code lokal ausgeführt werden soll (statt Colab):
 
 ```bash
 pip install -r requirements.txt
