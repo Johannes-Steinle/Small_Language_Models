@@ -6,7 +6,7 @@ Um die Innovationen im Bereich der SLMs einzuordnen, ist ein klares Verständnis
 
 Der Begriff "Foundation Model" wurde vom Stanford Institute for Human-Centered AI (HAI) geprägt. Ein **Foundation Model** ist ein KI-Modell, das auf einer sehr breiten Datenbasis (oft Petabytes an Text, Bildern, Audio) trainiert wurde und als "Allzweck-Basis" für verschiedene spezifische Aufgaben dient. [[1]](#quellen)
 
-*   *Beispiel:* Ein Modell kann Texte zusammenfassen, Code schreiben oder Fragen beantworten, ohne für eines davon exklusiv trainiert worden zu sein.
+*   *Beispiel:* Ein Modell lernt, Sätze sinnvoll fortzuführen und Text im Stil der Trainingsdaten zu generieren — z.B. "Die Hauptstadt von Frankreich ist" → "Paris". Es besitzt breites Weltwissen, kann aber noch keine Anweisungen befolgen oder gezielte Aufgaben lösen. Dafür ist ein nachgelagerter Schritt (z.B. SFT) notwendig.
 *   *Technologie:* Meist Transformer-Architekturen und **Self-Supervised Learning** — das Modell generiert seine Lernsignale aus den Daten selbst, z.B. durch Maskierung von Wörtern (BERT) oder Vorhersage des nächsten Tokens (GPT). [[1]](#quellen)
 *   *Nicht nur Text:* Foundation Models umfassen auch Modelle für Bilder (z.B. Stable Diffusion), Audio (z.B. MusicGen) oder Robotik (z.B. RT-2). Der "AI Foundation Model Transparency Act" (USA, 2023) definiert sie als KI-Modelle mit mindestens einer Milliarde Parametern, die auf breiten Daten mit Selbstüberwachung trainiert wurden. [[1]](#quellen)
 
