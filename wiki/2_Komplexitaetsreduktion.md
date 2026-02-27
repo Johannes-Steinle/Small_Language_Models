@@ -42,9 +42,9 @@ Ein Modell komplett neuzutrainieren ("Full Fine-Tuning") ist extrem teuer, da f�
 
 $$W' = W + \Delta W = W + B \cdot A$$
 
-*   $W \in \mathbb{R}^{d \times k}$: Die **eingefrorene** Original-Matrix des Basismodells.
-*   $B \in \mathbb{R}^{d \times r}$ und $A \in \mathbb{R}^{r \times k}$: Die trainierbaren Adapter-Matrizen.
-*   $r$ ist der **Rang**, wobei $r \ll \min(d, k)$.
+*   W ∈ ℝ<sup>d×k</sup>: Die **eingefrorene** Original-Matrix des Basismodells.
+*   B ∈ ℝ<sup>d×r</sup> und A ∈ ℝ<sup>r×k</sup>: Die trainierbaren Adapter-Matrizen.
+*   r ist der **Rang**, wobei r ≪ min(d, k).
 
 ### Rechenbeispiel
 
