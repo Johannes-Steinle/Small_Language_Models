@@ -1,6 +1,6 @@
 # 5. Praxis: Fine-Tuning, Inferenz und Deployment
 
-Dieser Projektteil zeigt, wie ein SLM (Gemma) angepasst, betrieben und eingesetzt werden kann — von der Anpassung auf eigenen Daten bis hin zum Deployment auf Edge-Geräten.
+Dieser Projektteil zeigt, wie aus einem generischen Foundation Model ein **persönliches Experten-SLM** gebaut werden kann — durch zwei aufeinander aufbauende Schritte: die **Anpassung auf eine spezifische Aufgabe** (SFT/Fine-Tuning) und den **effizienten Betrieb auf handelsüblicher Hardware** (Quantisierung).
 
 ## Der Fine-Tuning-Workflow mit QLoRA
 
@@ -20,7 +20,7 @@ bnb_config = BitsAndBytesConfig(
 
 ### Schritt 2: LoRA-Adapter definieren
 
-Anstatt das ganze Modell zu trainieren, werden die LoRA-Adapter konfiguriert. Typischerweise wird auf die Attention-Module abgezielt. Der Parameter `r` (Rank) steuert die Komplexität der Anpassung:
+Anstatt das ganze Modell zu trainieren, werden LoRA-Adapter konfiguriert — ein Verfahren aus der Familie der **PEFT (Parameter-Efficient Fine-Tuning)**-Techniken, die nur einen kleinen Bruchteil der Parameter trainieren und so den Ressourcenbedarf drastisch reduzieren (siehe [Kapitel 2](2_Komplexitaetsreduktion#lora-low-rank-adaptation)). Typischerweise wird auf die Attention-Module abgezielt. Der Parameter `r` (Rank) steuert die Komplexität der Anpassung:
 
 ```python
 peft_config = LoraConfig(
@@ -33,7 +33,7 @@ peft_config = LoraConfig(
 
 ### Schritt 3: Training mit SFTTrainer
 
-Die `trl`-Bibliothek (Transformer Reinforcement Learning) bietet den `SFTTrainer`, der den komplexen Trainings-Loop abstrahiert. Man übergibt das Modell, den Datensatz (z.B. Frage-Antwort-Paare) und die PEFT-Konfiguration. [[2]](#quellen)
+Die `trl`-Bibliothek (Transformer Reinforcement Learning) bietet den `SFTTrainer`, der den komplexen Trainings-Loop abstrahiert. Dieser Schritt entspricht dem in [Kapitel 1](1_Grundlagen#evolution-von-gpt-zu-instructgpt) beschriebenen **SFT (Supervised Fine-Tuning)**: Das Modell lernt domänenspezifische Aufgaben anhand von Beispiel-Prompt-Antwort-Paaren — hier angewendet nicht zur initialen Ausrichtung, sondern zur Domänenanpassung. Man übergibt das Modell, den Datensatz und die PEFT-Konfiguration. [[2]](#quellen)
 
 Dieser Workflow ermöglicht es, ein Sprachmodell auf einer einzelnen Consumer-Grafikkarte (z.B. NVIDIA RTX 3090 oder 4090) innerhalb weniger Stunden an eine neue Domäne anzupassen.
 
@@ -84,7 +84,8 @@ Die Analyse in diesem Projekt zeigt: Small Language Models sind weit mehr als ei
 
 *   **LoRA und Quantisierung** haben die Eintrittsbarrieren für KI-Anpassung demokratisiert. Ein Student mit einem Gaming-Laptop kann heute Modelle fine-tunen, für die vor drei Jahren Supercomputer nötig waren.
 *   Der **datenzentrierte Ansatz** von Phi-3 hat bewiesen, dass das Potenzial kleiner Netze lange unterschätzt wurde, weil sie mit "schlechten" Daten gefüttert wurden.
-*   Für die Zukunft zeichnet sich der Trend zu **Agentic SLMs** ab: Kleine Modelle, die spezialisiert sind auf Tool-Nutzung, API-Aufrufe und Orchestrierung. Anstatt alles Weltwissen in den Gewichten zu speichern, lernt das SLM nur die Logik der Informationsbeschaffung (**RAG — Retrieval Augmented Generation**).
+*   Der Trend hin zum **persönlichen Experten-SLM** zeichnet sich klar ab: Anstatt auf einen teuren generalistischen LLM-Dienst angewiesen zu sein, kann für jeden spezifischen Aufgabenbereich (Medizin, Recht, Technik) ein eigenes, spezialisiertes SLM erstellt werden — effizienter und günstiger. [[8]](#quellen)
+*   Als Ausblick bieten **Multi-Agenten-Systeme** eine besonders interessante Perspektive: Basierend auf Erkenntnissen aus der LLM-basierten Multi-Agenten-Forschung [[9]](#quellen) erscheint es denkbar, dass spezialisierte SLMs als Agenten fungieren und durch einen Orchestrator koordiniert werden könnten, um komplexe Aufgaben arbeitsteilig zu lösen — jeder Agent als Experte für eine Domäne, ergänzt durch **RAG (Retrieval Augmented Generation)** für den Zugriff auf externes Wissen.
 
 Während LLMs weiterhin die Grenzen der künstlichen Intelligenz erforschen, sind es die SLMs, die KI in die Breite der Gesellschaft und Wirtschaft bringen — **effizient, bezahlbar und privat**.
 
@@ -99,3 +100,5 @@ Während LLMs weiterhin die Grenzen der künstlichen Intelligenz erforschen, sin
 5. AI's Environmental Cost: Comparing Resource Consumption Between SLMs and LLMs — ICAIR. https://papers.academic-conferences.org/index.php/icair/article/view/4345
 6. NVIDIA Research Proves Small Language Models Superior to LLMs — Galileo AI. https://galileo.ai/blog/small-language-models-nvidia
 7. SLM series — Domino Data Lab: Distillation brings LLM power to SLMs — Computer Weekly. https://www.computerweekly.com/blog/CW-Developer-Network/SLM-series-Domino-Data-Lab-Distillation-brings-LLM-power-to-SLMs
+8. Wang et al. (2024): A Comprehensive Survey of Small Language Models in the Era of LLMs — arXiv. https://arxiv.org/abs/2411.03350
+9. Guo et al. (2024): Large Language Model based Multi-Agents: A Survey of Progress and Challenges — arXiv. https://arxiv.org/abs/2402.01680
