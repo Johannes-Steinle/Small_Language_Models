@@ -25,7 +25,7 @@ Ein Problem der klassischen Integer-Quantisierung: Sie geht von einer **gleichm�
 
 **NF4** löst dieses Problem: Die Quantisierungsstufen werden so gewählt, dass jeder "Bin" die gleiche Wahrscheinlichkeitsmasse der Normalverteilung abdeckt. Das bedeutet eine höhere Auflösung nahe Null (wo die meisten Gewichte liegen) und eine geringere an den Rändern. NF4 ist damit **informationstheoretisch optimal** für normalverteilte Daten. [[2]](#quellen)
 
-Zusätzlich nutzt **QLoRA** sogenannte **Double Quantization**: Da auch die Skalierungsfaktoren $S$ selbst Speicher benötigen, werden diese ebenfalls quantisiert (z.B. von FP32 auf FP8). Dies spart bei großen Modellen nochmals signifikant Speicher. [[3]](#quellen)
+**Double Quantization** geht noch einen Schritt weiter: Da auch die Skalierungsfaktoren $S$ selbst Speicher benötigen, werden diese ebenfalls quantisiert (z.B. von FP32 auf FP8). Dies spart bei großen Modellen nochmals signifikant Speicher. [[3]](#quellen)
 
 ### Post-Training (PTQ) vs. Quantization-Aware Training (QAT)
 
