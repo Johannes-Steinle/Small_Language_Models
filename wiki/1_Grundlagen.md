@@ -20,17 +20,18 @@ LLMs sind eine Unterklasse der Foundation Models, spezialisiert auf die Verarbei
 
 ## Evolution: Von GPT zu InstructGPT
 
-Ein reines Sprachmodell ist nur eine "Next-Token-Prediction"-Maschine. Um es zum Assistenten zu machen, sind weitere Schritte nötig:
+Ein **Foundation Model** nach dem Pre-Training ist nur eine "Next-Token-Prediction"-Maschine — es vervollständigt Muster, versteht aber keine Anweisungen. Die Evolution zum nützlichen Assistenten verläuft in aufeinander aufbauenden Trainingsschritten:
 
-1.  **Pre-Training (GPT):** Das Modell lernt Sprache, indem es Terabytes an Text liest.
+1.  **Pre-Training → Foundation Model:** Das Modell lernt Sprache, indem es Terabytes an Text liest.
     *   *Prompt:* "Die Hauptstadt von Frankreich ist" → *Modell:* "Paris".
     *   *Problem:* Es versteht keine Anweisungen. Auf "Backe einen Kuchen" antwortet es vielleicht mit "Backe ein Brot", weil es Muster vervollständigt, nicht Intentionen. [[1]](#quellen)
-2.  **InstructGPT (Alignment)** — ein dreistufiger Prozess: [[1]](#quellen)
-    1.  **SFT (Supervised Fine-Tuning):** Menschen schreiben perfekte Antworten auf Fragen. Das Modell lernt diese nachzuahmen.
-    2.  **Reward Modeling:** Das Modell generiert mehrere Antworten auf einen Prompt. Menschen bewerten diese per Ranking. Daraus wird ein **Belohnungsmodell** trainiert, das lernt, was Menschen bevorzugen.
-    3.  **RLHF (Reinforcement Learning from Human Feedback):** Das Sprachmodell wird mittels Reinforcement Learning (z.B. PPO-Algorithmus) optimiert, um die Bewertung des Reward Models zu maximieren.
+2.  **SFT (Supervised Fine-Tuning) → Instruction-following Model:** Menschen schreiben Beispiel-Prompts mit idealen Antworten. Das Modell lernt, Anweisungen zu erkennen und zu befolgen — aus dem Textgenerator wird ein Assistent, der Aufgaben löst. Dies ist der entscheidende Schritt: Aus dem Foundation Model wird ein nutzbares Modell. [[8]](#quellen)
+    *   *Aber:* Das Modell befolgt Anweisungen ohne Rücksicht auf Sicherheit oder menschliche Werte — auch schädliche Anfragen werden erfüllt.
+3.  **Reward Modeling + RLHF → Aligned Assistant:** Um das Modell nicht nur fähig, sondern auch wertekonform zu machen, folgt ein weiterer Schritt: [[8]](#quellen)
+    *   **Reward Modeling:** Das Modell generiert mehrere Antworten auf einen Prompt. Menschen bewerten diese per Ranking. Daraus wird ein **Belohnungsmodell** trainiert, das lernt, was Menschen bevorzugen.
+    *   **RLHF (Reinforcement Learning from Human Feedback):** Das Sprachmodell wird mittels Reinforcement Learning (z.B. PPO-Algorithmus) optimiert, um die Bewertung des Belohnungsmodells zu maximieren. Das Ergebnis: Das Modell lernt, Antworten zu bevorzugen, die von Menschen als hilfreich, ehrlich und harmlos bewertet werden. [[9]](#quellen)
 
-Dieser Schritt war entscheidend, um LLMs von reinen Textgeneratoren zu den heute bekannten Chatbots und Assistenten zu transformieren.
+Diese Schritte transformieren LLMs von reinen Textgeneratoren zu den heute bekannten Chatbots und Assistenten.
 
 ## Grenzen der Skalierung — und die Nische für SLMs
 
@@ -44,7 +45,7 @@ Trotz der Erfolge der LLMs zeigen sich fundamentale Grenzen:
 Hier öffnet sich die Nische für **Small Language Models (SLMs)**: Modelle mit typischerweise unter 10 Milliarden Parametern, die nicht auf Leistung verzichten, sondern die Frage stellen: *"Wie viel Intelligenz kann in ein begrenztes Parameterbudget gepackt werden?"* [[7]](#quellen)
 
 > **Warum ist das für SLMs wichtig?**
-> SLMs nutzen die oben genannten Techniken (SFT, RLHF) extrem effizient. Da sie weniger "Speicherkapazität" (Parameter) haben, müssen sie durch **Qualität statt Quantität** trainiert werden.
+> SLMs durchlaufen dieselben Trainingsschritte — insbesondere SFT ist für jedes spezialisierte SLM essenziell. Da sie weniger "Speicherkapazität" (Parameter) haben, müssen sie durch **Qualität statt Quantität** trainiert werden.
 
 ---
 
@@ -57,3 +58,5 @@ Hier öffnet sich die Nische für **Small Language Models (SLMs)**: Modelle mit 
 5. Energy Considerations of LLM Inference — ACL Anthology. https://aclanthology.org/2025.acl-long.1563.pdf
 6. AI, LLMs and Data Protection — Irish Data Protection Commission (DPC). https://www.dataprotection.ie/en/dpc-guidance/blogs/AI-LLMs-and-Data-Protection
 7. Small language models vs. large language models — Invisible Technologies. https://invisibletech.ai/blog/how-small-language-models-can-outperform-llms
+8. Ouyang et al. (2022): Training language models to follow instructions with human feedback — arXiv. https://arxiv.org/abs/2203.02155
+9. Illustrating Reinforcement Learning from Human Feedback (RLHF) — Hugging Face. https://huggingface.co/blog/rlhf
